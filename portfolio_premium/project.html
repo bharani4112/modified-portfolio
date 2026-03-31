@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Bharanidharan</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      padding: 130px 24px 50px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      border-radius: 30px;
+      padding: 6px 18px;
+      margin-bottom: 20px;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a78bfa;
+    }
+
+    .page-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      margin-bottom: 12px;
+    }
+
+    .page-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero p {
+      color: var(--muted2);
+      font-size: 0.95rem;
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* SECTION */
+    .section {
+      padding: 56px 24px;
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      white-space: nowrap;
+    }
+
+    .sec-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+      min-width: 20px;
+    }
+
+    .s-badge {
+      font-size: 0.69rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .s-college {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .s-office {
+      background: rgba(124, 58, 237, 0.12);
+      color: #a78bfa;
+      border: 1px solid rgba(124, 58, 237, 0.3);
+    }
+
+    .s-mini {
+      background: rgba(6, 182, 212, 0.12);
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    hr.div {
+      max-width: 1180px;
+      margin: 0 auto;
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* GRID */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 20px;
+    }
+
+    /* CARD */
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s, transform 0.5s, box-shadow 0.35s, border-color 0.3s;
+    }
+
+    .proj-card.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .proj-card:hover {
+      transform: translateY(-7px) !important;
+      border-color: rgba(124, 58, 237, 0.35);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark-mode .proj-card:hover {
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5);
+    }
+
+    /* LIVE BADGE */
+    .proj-card.is-live .img-w::after {
+      content: '● LIVE';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(16, 185, 129, 0.9);
+      color: #fff;
+      font-size: 0.63rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 3px 9px;
+      border-radius: 20px;
+      animation: livepulse 2s infinite;
+    }
+
+    @keyframes livepulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.55
+      }
+    }
+
+    .img-w {
+      position: relative;
+      overflow: hidden;
+      height: 192px;
+    }
+
+    .img-w img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .proj-card:hover .img-w img {
+      transform: scale(1.07);
+    }
+
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
+    }
+
+    .type-pill {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 0.63rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .tp-college {
+      background: rgba(245, 158, 11, 0.88);
+      color: #000;
+    }
+
+    .tp-office {
+      background: rgba(124, 58, 237, 0.88);
+      color: #fff;
+    }
+
+    .tp-mini {
+      background: rgba(6, 182, 212, 0.88);
+      color: #000;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .card-body p {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      font-size: 0.69rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      color: var(--muted2);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      font-size: 0.81rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .btn-view:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+    }
+
+    .btn-view.teal {
+      background: linear-gradient(135deg, #06b6d4, #0284c7);
+    }
+
+    .btn-view.teal:hover {
+      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+    }
+
+    .no-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 0.77rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: default;
+    }
+
+    body:not(.dark-mode) .no-link {
+      background: var(--surface2);
+    }
+
+    /* CTA */
+    .cta-wrap {
+      max-width: 1180px;
+      margin: 0 auto 70px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.05));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 24px;
+      padding: 44px 40px;
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    body:not(.dark-mode) .cta-card {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(6, 182, 212, 0.03));
+    }
+
+    .cta-text h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      margin-bottom: 10px;
+    }
+
+    .cta-text h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-text p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 500px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .rec-note {
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(6, 182, 212, 0.07);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      font-size: 0.82rem;
+      color: #22d3ee;
+      line-height: 1.5;
+    }
+
+    body:not(.dark-mode) .rec-note {
+      color: #0284c7;
+      background: rgba(6, 182, 212, 0.08);
+      border-color: rgba(6, 182, 212, 0.2);
+    }
+
+    .rec-note strong {
+      color: var(--text);
+    }
+
+    .cta-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 190px;
+      flex-shrink: 0;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 22px;
+      border-radius: 30px;
+      font-size: 0.87rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+      justify-content: center;
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+    }
+
+    .cta-primary:hover {
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .cta-wa {
+      background: rgba(37, 211, 102, 0.1);
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
+
+    .cta-wa:hover {
+      background: rgba(37, 211, 102, 0.18);
+    }
+
+    .cta-gh {
+      background: var(--surface2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .cta-gh:hover {
+      border-color: rgba(124, 58, 237, 0.4);
+    }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+      .page-hero {
+        padding: 110px 20px 36px;
+      }
+
+      .section {
+        padding: 40px 20px;
+      }
+
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-wrap {
+        padding: 0 20px;
+        margin-bottom: 50px;
+      }
+
+      .cta-card {
+        padding: 28px 22px;
+      }
+
+      .cta-btns {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .cta-btn {
+        flex: 1;
+        min-width: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="fireflies">
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+  </div>
+
+  <label class="toggle" title="Toggle theme">
+    <input type="checkbox" id="switch">
+    <span class="icon icon--moon"><i class="fas fa-moon"></i></span>
+    <span class="icon icon--sun"><i class="fas fa-sun"></i></span>
+  </label>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Bharani.</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Skills.html">Skills</a>
+      <a href="project.html" class="active">Projects</a>
+      <a href="experince.html">Experience</a>
+    </div>
+    <div class="nav-cta">
+      <a href="Bharanidev.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="Skills.html">Skills</a>
+    <a href="project.html" class="active">Projects</a>
+    <a href="experince.html">Experience</a>
+    <div class="drawer-actions">
+      <a href="resume.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="page-hero">
+      <div class="hero-badge"><i class="fas fa-star-of-life"
+          style="font-size:.65rem;animation:spin 4s linear infinite"></i> Portfolio</div>
+      <h1>Projects &amp; <em>Work</em></h1>
+      <p>From college ideas to live production — every project tells a story of growth and craft.</p>
+    </div>
+
+    <!-- MAIN / COLLEGE -->
+    <section class="section">
+      <div class="sec-head">
+        <span class="sec-title">Main Projects</span>
+        <div class="sec-line"></div>
+        <span class="s-badge s-college">College Work</span>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="img-w">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Pet Shop">
+            <div class="img-overlay"></div>
+            <span class="type-pill tp-college">College Project</span>
+          </div>
+          <div class="card-body">
+            <h3>Paws &amp; Claws — Online Pet Shop</h3>
+            <p>Full-featured e-commerce platform for pet supplies. Product catalog, shopping cart, order management
+              &amp; admin panel built end-to-end with PHP &amp; MySQL.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">MySQL</span>
+              <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span>
+            </div>
+            <div class="actions">
+              <span class="no-link"><i class="fas fa-lock" style="font-size:.7rem"></i> Not Hosted Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="div">
+
+    <!-- OFFICE -->
+    <section class="section">
+      <div class="sec-head">
+        <span class="sec-title">Office Projects</span>
+        <div class="sec-line"></div>
+        <span class="s-badge s-office">Live Production</span>
+      </div>
+      <div class="proj-grid">
+
+        <div class="proj-card is-live">
+          <div class="img-w">
+            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80" alt="Ocean Online Mart">
+            <div class="img-overlay"></div>
+            <span class="type-pill tp-office">Office Work</span>
+          </div>
+          <div class="card-body">
+            <h3>Ocean Online Mart</h3>
+            <p>Full-scale e-commerce website delivered for a real client. Product listings, dynamic cart, category
+              filters, and a responsive UI built for conversions.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">MySQL</span>
+              <span class="tag">Bootstrap</span><span class="tag">JavaScript</span><span class="tag">E-Commerce</span>
+            </div>
+            <div class="actions">
+              <a href="https://oceanonlinemart.com/newsite/" target="_blank" class="btn-view"><i
+                  class="fas fa-external-link-alt"></i> View Live Site</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card is-live">
+          <div class="img-w">
+            <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=600&q=80" alt="Jolly Tourism">
+            <div class="img-overlay"></div>
+            <span class="type-pill tp-office">Office Work</span>
+          </div>
+          <div class="card-body">
+            <h3>Jolly Tourism</h3>
+            <p>Modern travel &amp; tourism website for a real business. Tour packages, destinations, booking enquiry
+              forms, and SEO-optimised pages.</p>
+            <div class="tags">
+              <span class="tag">PHP</span><span class="tag">MySQL</span>
+              <span class="tag">Bootstrap</span><span class="tag">JavaScript</span><span class="tag">Tourism</span>
+            </div>
+            <div class="actions">
+              <a href="https://jollytourism.com/" target="_blank" class="btn-view"><i
+                  class="fas fa-external-link-alt"></i> View Live Site</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="div">
+
+    <!-- MINI -->
+    <section class="section">
+      <div class="sec-head">
+        <span class="sec-title">Mini Projects</span>
+        <div class="sec-line"></div>
+        <span class="s-badge s-mini">Live Demos</span>
+      </div>
+      <div class="proj-grid">
+
+        <div class="proj-card is-live">
+          <div class="img-w">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80" alt="WhatsApp Lead Gen">
+            <div class="img-overlay"></div>
+            <span class="type-pill tp-mini">Mini Project</span>
+          </div>
+          <div class="card-body">
+            <h3>WhatsApp Lead Generation</h3>
+            <p>Landing page tool that funnels website visitors directly into WhatsApp — perfect for local businesses to
+              capture instant leads and convert traffic to chats.</p>
+            <div class="tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span>
+              <span class="tag">JavaScript</span><span class="tag">WhatsApp API</span>
+            </div>
+            <div class="actions">
+              <a href="https://whatsappleads.gamer.gd/?i=2" target="_blank" class="btn-view teal"><i
+                  class="fab fa-whatsapp"></i> View Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card is-live">
+          <div class="img-w">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Gym Site">
+            <div class="img-overlay"></div>
+            <span class="type-pill tp-mini">Mini Project</span>
+          </div>
+          <div class="card-body">
+            <h3>Gym Pro — Demo Site</h3>
+            <p>Sleek gym &amp; fitness landing page with hero, class schedules, trainer profiles, membership pricing,
+              and a contact form. Fully responsive design.</p>
+            <div class="tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span>
+              <span class="tag">JavaScript</span><span class="tag">Bootstrap</span>
+            </div>
+            <div class="actions">
+              <a href="https://gym-demoo-pro.netlify.app/" target="_blank" class="btn-view teal"><i
+                  class="fas fa-external-link-alt"></i> View Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card is-live">
+          <div class="img-w">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Salon Site">
+            <div class="img-overlay"></div>
+            <span class="type-pill tp-mini">Mini Project</span>
+          </div>
+          <div class="card-body">
+            <h3>Glamour Salon — Landing Page</h3>
+            <p>Premium salon landing page with services gallery, booking CTA, testimonials, and elegant typography.
+              Designed to convert visitors into clients.</p>
+            <div class="tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span>
+              <span class="tag">JavaScript</span><span class="tag">Responsive</span>
+            </div>
+            <div class="actions">
+              <a href="https://steady-pika-c8fafd.netlify.app/" target="_blank" class="btn-view teal"><i
+                  class="fas fa-external-link-alt"></i> View Live</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+      <div class="cta-card">
+        <div class="cta-text">
+          <h2>Let's Build Something <em>Great</em></h2>
+          <p>Open to full-time roles, freelance, and internships. I bring production experience, fast delivery, and
+            genuine hunger to grow — exactly what growing teams need.</p>
+          <div class="rec-note">
+            <strong>For Recruiters:</strong> I've delivered live production websites for real clients. Available
+            immediately · PHP + Full-Stack · Fast learner.
+          </div>
+        </div>
+        <div class="cta-btns">
+          <a href="mailto:bharanideveloperjob@gmail.com" class="cta-btn cta-primary"><i class="fas fa-envelope"></i>
+            Email Me</a>
+          <a href="https://wa.me/7695939649" target="_blank" class="cta-btn cta-wa"><i class="fab fa-whatsapp"></i>
+            WhatsApp</a>
+          <a href="https://github.com/bharani4112" target="_blank" class="cta-btn cta-gh"><i class="fab fa-github"></i>
+            GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>© 2025 Bharanidharan. All rights reserved. | Made with ❤️</footer>
+  </div>
+
+  <script src="index.js"></script>
+  <script>
+    // Card scroll-in
+    document.addEventListener('DOMContentLoaded', function () {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('in'), i * 80);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.proj-card').forEach(c => obs.observe(c));
+    });
+  </script>
+  <style>
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+  </style>
+</body>
+
+</html>

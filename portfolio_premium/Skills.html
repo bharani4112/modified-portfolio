@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills | Bharanidharan</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero{padding:130px 24px 44px; text-align:center; position:relative; z-index:1;}
+    .hero-badge{
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3);
+      border-radius:30px; padding:6px 18px; margin-bottom:18px;
+      font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; color:#22d3ee;
+    }
+    .page-hero h1{
+      font-family:'Syne',sans-serif; font-weight:800;
+      font-size:clamp(2rem,4.5vw,3.2rem); margin-bottom:10px; color:var(--text);
+    }
+    .page-hero h1 em{
+      font-style:normal;
+      background:linear-gradient(135deg,#06b6d4,#7c3aed);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .page-hero p{color:var(--muted); font-size:0.93rem; max-width:420px; margin:0 auto;}
+
+    .skills-wrap{max-width:1060px; margin:0 auto; padding:36px 24px 80px; position:relative; z-index:1;}
+    .sk-cat{margin-bottom:48px;}
+    .cat-hd{display:flex; align-items:center; gap:12px; margin-bottom:24px;}
+    .cat-ic{
+      width:38px; height:38px; border-radius:11px;
+      display:flex; align-items:center; justify-content:center; font-size:0.95rem; color:#fff; flex-shrink:0;
+    }
+    .cat-hd h2{font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; color:var(--text);}
+    .cat-line{flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent);}
+
+    .pills{display:flex; flex-wrap:wrap; gap:9px;}
+    .pill{
+      display:flex; align-items:center; gap:8px;
+      background:var(--surface); border:1px solid var(--border); border-radius:40px;
+      padding:9px 16px; font-size:0.84rem; font-weight:500; color:var(--text);
+      transition:all 0.25s; cursor:default;
+      opacity:0; transform:translateY(14px);
+    }
+    .pill.in{opacity:1; transform:translateY(0);}
+    .pill:hover{border-color:rgba(124,58,237,0.4); background:rgba(124,58,237,0.07); transform:translateY(-3px); box-shadow:0 6px 16px rgba(0,0,0,0.1);}
+    body.dark-mode .pill:hover{box-shadow:0 6px 16px rgba(0,0,0,0.3);}
+    .pill img{width:20px; height:20px; object-fit:contain; flex-shrink:0;}
+    .lvl{
+      font-size:0.66rem; font-weight:700; letter-spacing:0.06em;
+      padding:2px 7px; border-radius:20px; margin-left:2px; flex-shrink:0;
+    }
+    .lv-pro  {background:rgba(16,185,129,0.12);  color:#34d399;}
+    .lv-good {background:rgba(245,158,11,0.12);  color:#fbbf24;}
+    .lv-learn{background:rgba(124,58,237,0.12);  color:#a78bfa;}
+
+    /* MOBILE */
+    @media(max-width:768px){
+      .page-hero{padding:108px 20px 36px;}
+      .skills-wrap{padding:20px 20px 60px;}
+      .pills{gap:7px;}
+      .pill{font-size:0.8rem; padding:8px 13px;}
+    }
+    @media(max-width:480px){
+      .pill .lvl{display:none;}
+    }
+  </style>
+</head>
+<body>
+  <div class="fireflies">
+    <div class="firefly"></div><div class="firefly"></div>
+    <div class="firefly"></div><div class="firefly"></div>
+    <div class="firefly"></div><div class="firefly"></div>
+  </div>
+  <label class="toggle" title="Toggle theme">
+    <input type="checkbox" id="switch">
+    <span class="icon icon--moon"><i class="fas fa-moon"></i></span>
+    <span class="icon icon--sun"><i class="fas fa-sun"></i></span>
+  </label>
+  <nav>
+    <a href="index.html" class="nav-logo">Bharani.</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Skills.html" class="active">Skills</a>
+      <a href="project.html">Projects</a>
+      <a href="experince.html">Experience</a>
+    </div>
+    <div class="nav-cta">
+      <a href="resume.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="Skills.html" class="active">Skills</a>
+    <a href="project.html">Projects</a>
+    <a href="experince.html">Experience</a>
+    <div class="drawer-actions">
+      <a href="resume.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="page-hero">
+      <div class="hero-badge"><i class="fas fa-bolt" style="font-size:.7rem"></i> Tech Stack</div>
+      <h1>My <em>Skills</em></h1>
+      <p>Tools I work with daily — and a few I'm actively levelling up.</p>
+    </div>
+    <div class="skills-wrap">
+
+      <div class="sk-cat">
+        <div class="cat-hd">
+          <div class="cat-ic" style="background:linear-gradient(135deg,#f97316,#ef4444)"><i class="fas fa-globe"></i></div>
+          <h2>Frontend</h2><div class="cat-line"></div>
+        </div>
+        <div class="pills">
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">HTML5<span class="lvl lv-pro">Pro</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">CSS3<span class="lvl lv-pro">Pro</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">JavaScript<span class="lvl lv-good">Good</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg">Bootstrap<span class="lvl lv-pro">Pro</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">React<span class="lvl lv-learn">Learning</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg">Tailwind CSS<span class="lvl lv-good">Good</span></span>
+        </div>
+      </div>
+
+      <div class="sk-cat">
+        <div class="cat-hd">
+          <div class="cat-ic" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)"><i class="fas fa-server"></i></div>
+          <h2>Backend</h2><div class="cat-line"></div>
+        </div>
+        <div class="pills">
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg">PHP<span class="lvl lv-good">Good</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">Python<span class="lvl lv-good">Good</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg">Django<span class="lvl lv-good">Good</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg">Laravel<span class="lvl lv-learn">Learning</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">MySQL<span class="lvl lv-good">Good</span></span>
+        </div>
+      </div>
+
+      <div class="sk-cat">
+        <div class="cat-hd">
+          <div class="cat-ic" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fas fa-tools"></i></div>
+          <h2>Tools &amp; Others</h2><div class="cat-line"></div>
+        </div>
+        <div class="pills">
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">GitHub<span class="lvl lv-good">Good</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg">Git<span class="lvl lv-good">Good</span></span>
+          <span class="pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg">VS Code<span class="lvl lv-pro">Daily</span></span>
+          <span class="pill"><i class="fas fa-mobile-alt" style="color:#06b6d4;font-size:1rem;width:20px;text-align:center;flex-shrink:0"></i>Responsive Design<span class="lvl lv-pro">Pro</span></span>
+          <span class="pill"><i class="fas fa-robot" style="color:#a78bfa;font-size:0.95rem;width:20px;text-align:center;flex-shrink:0"></i>AI Integration<span class="lvl lv-good">Good</span></span>
+        </div>
+      </div>
+
+    </div>
+    <footer>© 2025 Bharanidharan. All rights reserved. | Made with ❤️</footer>
+  </div>
+
+  <script src="index.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if(e.isIntersecting){
+            e.target.querySelectorAll('.pill').forEach((p,i) => {
+              setTimeout(() => {
+                p.style.transition = `opacity .4s ${i*0.055}s ease, transform .4s ${i*0.055}s ease, box-shadow .25s, border-color .25s`;
+                p.classList.add('in');
+              }, 0);
+            });
+          }
+        });
+      }, {threshold:0.12});
+      document.querySelectorAll('.sk-cat').forEach(c => obs.observe(c));
+    });
+  </script>
+</body>
+</html>

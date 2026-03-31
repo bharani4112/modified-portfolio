@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bharanidharan — Full Stack Web Developer. PHP, JavaScript, React, Django.">
+  <title>Bharanidharan — Full Stack Developer</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── SPLASH ── */
+    .splash{
+      position:fixed; inset:0; z-index:1000; background:var(--bg);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
+      transition:opacity 0.7s, visibility 0.7s;
+    }
+    .splash.gone{opacity:0; visibility:hidden; pointer-events:none;}
+    .splash-logo{
+      font-family:'Syne',sans-serif; font-weight:800; font-size:2rem;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .splash-bar{width:160px; height:3px; background:var(--surface2); border-radius:10px; overflow:hidden;}
+    .splash-fill{height:100%; width:0; border-radius:10px; background:linear-gradient(90deg,#7c3aed,#06b6d4); animation:sfill 2.4s ease forwards;}
+    @keyframes sfill{to{width:100%}}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:110px 24px 80px; text-align:center;
+      position:relative; z-index:1;
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.3);
+      border-radius:30px; padding:6px 18px; margin-bottom:24px;
+      font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#a78bfa;
+    }
+    .live-dot{width:7px; height:7px; border-radius:50%; background:#10b981; animation:ldot 2s infinite;}
+    @keyframes ldot{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0.5)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}
+
+    h1.hero-title{
+      font-family:'Syne',sans-serif; font-weight:800;
+      font-size:clamp(2.6rem,7vw,5rem); line-height:1.08;
+      letter-spacing:-0.02em; margin-bottom:22px;
+    }
+    .name-grad{
+      background:linear-gradient(135deg,#7c3aed 30%,#06b6d4);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .role-line{display:block; font-size:0.58em; color:var(--muted2); font-weight:500; margin-top:6px;}
+    .typed-grad{
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .hero-desc{color:var(--muted2); font-size:1rem; max-width:500px; line-height:1.7; margin-bottom:36px;}
+    .hero-btns{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-bottom:56px;}
+
+    /* stats */
+    .stats{
+      display:flex; border:1px solid var(--border); border-radius:20px; overflow:hidden;
+      background:var(--surface);
+    }
+    .stat{padding:18px 32px; text-align:center; position:relative;}
+    .stat+.stat::before{content:''; position:absolute; left:0; top:20%; bottom:20%; width:1px; background:var(--border);}
+    .stat-n{
+      font-family:'Syne',sans-serif; font-weight:800; font-size:1.7rem;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      display:block; margin-bottom:2px;
+    }
+    .stat-l{font-size:0.75rem; color:var(--muted);}
+
+    /* ── TICKER ── */
+    .ticker-wrap{
+      overflow:hidden; padding:24px 0; margin:0 0 70px;
+      border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      position:relative; z-index:1;
+    }
+    .ticker-track{display:flex; gap:36px; width:max-content; animation:tick 22s linear infinite;}
+    @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .tick-item{
+      display:flex; align-items:center; gap:9px; font-size:0.84rem;
+      font-weight:500; color:var(--muted); white-space:nowrap; flex-shrink:0;
+    }
+    .tick-item img{width:20px; height:20px; object-fit:contain;}
+
+    /* ── EXPLORE CARDS ── */
+    .explore{max-width:1160px; margin:0 auto; padding:0 24px 90px; position:relative; z-index:1;}
+    .explore-label{font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:700;
+      letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:22px;}
+    .exp-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px;}
+    .exp-card{
+      background:var(--surface); border:1px solid var(--border); border-radius:20px;
+      padding:26px; text-decoration:none; color:var(--text);
+      display:flex; flex-direction:column; gap:10px; transition:all 0.3s;
+    }
+    .exp-card:hover{transform:translateY(-5px); border-color:rgba(124,58,237,0.35); box-shadow:0 16px 36px rgba(0,0,0,0.12);}
+    .ec-icon{width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1rem; color:#fff;}
+    .exp-card h3{font-family:'Syne',sans-serif; font-weight:700; font-size:0.98rem;}
+    .exp-card p{font-size:0.82rem; color:var(--muted); line-height:1.5;}
+    .ec-arrow{margin-top:auto; font-size:0.78rem; color:var(--muted); display:flex; align-items:center; gap:5px; transition:gap 0.2s,color 0.2s;}
+    .exp-card:hover .ec-arrow{color:var(--text); gap:9px;}
+
+    /* ── BOTTOM SOCIAL ── */
+    .bottom-bar{
+      position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+      z-index:100; background:var(--surface); border:1px solid var(--border);
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+      border-radius:40px; padding:8px 16px;
+      display:flex; gap:4px; align-items:center; box-shadow:var(--shadow);
+    }
+    .bb-btn{
+      width:38px; height:38px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--muted); text-decoration:none; font-size:0.9rem; transition:all 0.2s;
+    }
+    .bb-btn:hover{background:rgba(124,58,237,0.14); color:var(--text); transform:translateY(-3px);}
+    .bb-sep{width:1px; height:18px; background:var(--border); margin:0 2px;}
+
+    /* ── MOBILE ── */
+    @media(max-width:768px){
+      .hero{padding:90px 20px 60px;}
+      .stats{flex-wrap:wrap;}
+      .stat{flex:1; min-width:100px; padding:14px 16px;}
+      .explore{padding:0 20px 70px;}
+      .exp-grid{grid-template-columns:1fr 1fr;}
+      .hero-btns a{flex:1; justify-content:center;}
+    }
+    @media(max-width:420px){
+      .exp-grid{grid-template-columns:1fr;}
+      h1.hero-title{font-size:2.2rem;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPLASH -->
+  <div class="splash" id="splash">
+    <span class="splash-logo">Bharani.</span>
+    <div class="splash-bar"><div class="splash-fill"></div></div>
+  </div>
+
+  <!-- FIREFLIES -->
+  <div class="fireflies">
+    <div class="firefly"></div><div class="firefly"></div>
+    <div class="firefly"></div><div class="firefly"></div>
+    <div class="firefly"></div><div class="firefly"></div>
+  </div>
+
+  <!-- DARK MODE TOGGLE -->
+  <label class="toggle" title="Toggle theme">
+    <input type="checkbox" id="switch">
+    <span class="icon icon--moon"><i class="fas fa-moon"></i></span>
+    <span class="icon icon--sun"><i class="fas fa-sun"></i></span>
+  </label>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Bharani.</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="About.html">About</a>
+      <a href="Skills.html">Skills</a>
+      <a href="project.html">Projects</a>
+      <a href="experince.html">Experience</a>
+    </div>
+    <div class="nav-cta">
+      <a href="resume.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html" class="active">Home</a>
+    <a href="About.html">About</a>
+    <a href="Skills.html">Skills</a>
+    <a href="project.html">Projects</a>
+    <a href="experince.html">Experience</a>
+    <div class="drawer-actions">
+      <a href="resume.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="eyebrow"><span class="live-dot"></span>Open to Opportunities</div>
+      <h1 class="hero-title">
+        <span class="name-grad">Bharanidharan</span>
+        <span class="role-line"><span class="typed-grad" id="typed-text"></span></span>
+      </h1>
+      <p class="hero-desc">Building fast, modern, production-ready websites — from pixel-perfect frontends to solid PHP &amp; Django backends. Based in Tamil Nadu, available worldwide.</p>
+      <div class="hero-btns">
+        <a href="project.html" class="btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+        <a href="resume.pdf" download class="btn-ghost"><i class="fas fa-download"></i> Download CV</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">2+</span><span class="stat-l">Live Projects</span></div>
+        <div class="stat"><span class="stat-n">5+</span><span class="stat-l">Projects Built</span></div>
+        <div class="stat"><span class="stat-n">8+</span><span class="stat-l">Technologies</span></div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">HTML5</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">CSS3</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">JavaScript</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg">PHP</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">React</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg">Bootstrap</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg">Django</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">MySQL</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">Python</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">GitHub</span>
+        <!-- duplicate for seamless loop -->
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">HTML5</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">CSS3</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">JavaScript</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg">PHP</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">React</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg">Bootstrap</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg">Django</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">MySQL</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">Python</span>
+        <span class="tick-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">GitHub</span>
+      </div>
+    </div>
+
+    <!-- EXPLORE -->
+    <div class="explore">
+      <p class="explore-label">Explore</p>
+      <div class="exp-grid">
+        <a href="About.html" class="exp-card" data-anim data-delay="0">
+          <div class="ec-icon" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)"><i class="fas fa-user"></i></div>
+          <h3>About Me</h3>
+          <p>My background, goals, and what drives me.</p>
+          <span class="ec-arrow">Learn more <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="Skills.html" class="exp-card" data-anim data-delay="0.08">
+          <div class="ec-icon" style="background:linear-gradient(135deg,#06b6d4,#0284c7)"><i class="fas fa-code"></i></div>
+          <h3>Skills</h3>
+          <p>PHP, Django, React, MySQL and more.</p>
+          <span class="ec-arrow">View stack <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="project.html" class="exp-card" data-anim data-delay="0.16">
+          <div class="ec-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fas fa-rocket"></i></div>
+          <h3>Projects</h3>
+          <p>College builds, live office projects, mini demos.</p>
+          <span class="ec-arrow">See work <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="experince.html" class="exp-card" data-anim data-delay="0.24">
+          <div class="ec-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fas fa-briefcase"></i></div>
+          <h3>Experience</h3>
+          <p>Junior PHP Dev @ Veerai Kumaran PVT.</p>
+          <span class="ec-arrow">View history <i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+
+    <footer>© 2025 Bharanidharan. All rights reserved. | Made with ❤️ in Tamil Nadu</footer>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <a href="tel:7695939649" class="bb-btn" title="Call"><i class="fas fa-phone-alt"></i></a>
+    <a href="https://wa.me/7695939649" target="_blank" class="bb-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <div class="bb-sep"></div>
+    <a href="https://github.com/bharani4112" target="_blank" class="bb-btn" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/bharani-dharan-m-39b85a287" target="_blank" class="bb-btn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <div class="bb-sep"></div>
+    <a href="mailto:bharanideveloperjob@gmail.com" class="bb-btn" title="Email"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="index.js"></script>
+  <script>
+    // Splash hide
+    setTimeout(() => document.getElementById('splash').classList.add('gone'), 2600);
+
+    // Typed.js
+    document.addEventListener('DOMContentLoaded', function(){
+      new Typed('#typed-text', {
+        strings: ['Full Stack Developer','PHP Developer','Frontend Craftsman','Django Developer'],
+        typeSpeed:55, backSpeed:30, backDelay:1800, loop:true
+      });
+    });
+  </script>
+</body>
+</html>

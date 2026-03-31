@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Bharanidharan</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-wrap{
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      padding:110px 24px 70px; position:relative; z-index:1;
+    }
+    .about-grid{
+      max-width:1080px; width:100%;
+      display:grid; grid-template-columns:320px 1fr; gap:40px; align-items:start;
+    }
+
+    /* LEFT CARD */
+    .profile-card{
+      background:var(--surface); border:1px solid var(--border); border-radius:22px;
+      padding:32px 24px; text-align:center; position:sticky; top:90px;
+    }
+    .avatar-wrap{position:relative; display:inline-block; margin-bottom:18px;}
+    .avatar-wrap img{
+      width:110px; height:110px; border-radius:50%; object-fit:cover;
+      border:3px solid rgba(124,58,237,0.4); box-shadow:0 0 28px rgba(124,58,237,0.2);
+    }
+    .avatar-ring{
+      position:absolute; inset:-6px; border-radius:50%;
+      border:2px dashed rgba(124,58,237,0.4);
+      animation:spin-r 8s linear infinite;
+    }
+    @keyframes spin-r{to{transform:rotate(360deg)}}
+    .profile-card h2{font-family:'Syne',sans-serif; font-weight:800; font-size:1.2rem; margin-bottom:3px; color:var(--text);}
+    .pc-role{font-size:0.84rem; color:#a78bfa; margin-bottom:4px;}
+    .pc-loc{font-size:0.78rem; color:var(--muted); margin-bottom:18px;}
+    .pc-loc i{margin-right:4px; color:#f59e0b;}
+    .status-pill{
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3);
+      border-radius:30px; padding:5px 14px; font-size:0.73rem; color:#34d399; margin-bottom:20px;
+    }
+    .sdot{width:6px; height:6px; border-radius:50%; background:#10b981; animation:sdot-p 2s infinite;}
+    @keyframes sdot-p{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0.5)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}
+    .socials{display:flex; justify-content:center; gap:9px; margin-bottom:22px;}
+    .sc-link{
+      width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      background:var(--surface2); border:1px solid var(--border); color:var(--muted2);
+      text-decoration:none; font-size:0.9rem; transition:all 0.2s;
+    }
+    .sc-link:hover{background:rgba(124,58,237,0.15); color:var(--text); border-color:rgba(124,58,237,0.4); transform:translateY(-3px);}
+    .contact-list{text-align:left; border-top:1px solid var(--border); padding-top:18px;}
+    .ci{display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--border); font-size:0.82rem;}
+    .ci:last-child{border-bottom:none;}
+    .ci i{width:16px; color:#a78bfa; text-align:center; flex-shrink:0;}
+    .ci a{color:var(--muted2); text-decoration:none; word-break:break-all; transition:color 0.2s;}
+    .ci a:hover{color:var(--text);}
+
+    /* RIGHT */
+    .about-content{display:flex; flex-direction:column; gap:26px;}
+    .sec-tag{
+      display:inline-flex; align-items:center; gap:7px;
+      background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.3);
+      border-radius:30px; padding:5px 14px; margin-bottom:6px;
+      font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#a78bfa;
+    }
+    .about-content h1{
+      font-family:'Syne',sans-serif; font-weight:800;
+      font-size:clamp(1.7rem,3.5vw,2.5rem); line-height:1.18; margin-bottom:14px; color:var(--text);
+    }
+    .about-content h1 em{
+      font-style:normal;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .about-content p{color:var(--muted); font-size:0.91rem; line-height:1.75; margin-bottom:8px;}
+    .highlight{
+      background:rgba(6,182,212,0.07); border:1px solid rgba(6,182,212,0.2);
+      border-radius:14px; padding:16px 18px; font-size:0.85rem; color:#22d3ee; line-height:1.55;
+    }
+    body:not(.dark-mode) .highlight{color:#0284c7; background:rgba(6,182,212,0.07);}
+    .highlight strong{color:var(--text);}
+    .mini-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
+    .ms{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; text-align:center;}
+    .ms-n{
+      font-family:'Syne',sans-serif; font-weight:800; font-size:1.5rem; display:block; margin-bottom:2px;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .ms-l{font-size:0.72rem; color:var(--muted);}
+    .about-btns{display:flex; gap:12px; flex-wrap:wrap;}
+
+    /* MOBILE */
+    @media(max-width:900px){
+      .about-grid{grid-template-columns:1fr;}
+      .profile-card{position:static;}
+    }
+    @media(max-width:600px){
+      .about-wrap{padding:90px 18px 60px;}
+      .mini-stats{grid-template-columns:1fr 1fr;}
+      .about-btns a{flex:1; justify-content:center;}
+    }
+  </style>
+</head>
+<body>
+  <div class="fireflies">
+    <div class="firefly"></div><div class="firefly"></div>
+    <div class="firefly"></div><div class="firefly"></div>
+    <div class="firefly"></div><div class="firefly"></div>
+  </div>
+  <label class="toggle" title="Toggle theme">
+    <input type="checkbox" id="switch">
+    <span class="icon icon--moon"><i class="fas fa-moon"></i></span>
+    <span class="icon icon--sun"><i class="fas fa-sun"></i></span>
+  </label>
+  <nav>
+    <a href="index.html" class="nav-logo">Bharani.</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="About.html" class="active">About</a>
+      <a href="Skills.html">Skills</a>
+      <a href="project.html">Projects</a>
+      <a href="experince.html">Experience</a>
+    </div>
+    <div class="nav-cta">
+      <a href="resume.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html">Home</a>
+    <a href="About.html" class="active">About</a>
+    <a href="Skills.html">Skills</a>
+    <a href="project.html">Projects</a>
+    <a href="experince.html">Experience</a>
+    <div class="drawer-actions">
+      <a href="resume.pdf" download class="btn-outline">Resume</a>
+      <a href="mailto:bharanideveloperjob@gmail.com" class="btn-filled">Hire Me</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="about-wrap">
+      <div class="about-grid">
+        <!-- LEFT -->
+        <div class="profile-card">
+          <div class="avatar-wrap">
+            <img src="image/myimg.jpg" alt="Bharanidharan">
+            <div class="avatar-ring"></div>
+          </div>
+          <h2>Bharanidharan M</h2>
+          <p class="pc-role">Full Stack Developer</p>
+          <p class="pc-loc"><i class="fas fa-map-marker-alt"></i>Tamil Nadu, India</p>
+          <div class="status-pill"><span class="sdot"></span>Open to Opportunities</div>
+          <div class="socials">
+            <a href="https://github.com/bharani4112" target="_blank" class="sc-link"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/bharani-dharan-m-39b85a287" target="_blank" class="sc-link"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:bharanideveloperjob@gmail.com" class="sc-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/7695939649" target="_blank" class="sc-link"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          <div class="contact-list">
+            <div class="ci"><i class="fas fa-phone"></i><a href="tel:7695939649">+91 76959 39649</a></div>
+            <div class="ci"><i class="fas fa-envelope"></i><a href="mailto:bharanideveloperjob@gmail.com">bharanideveloperjob@gmail.com</a></div>
+            <div class="ci"><i class="fab fa-github"></i><a href="https://github.com/bharani4112" target="_blank">github.com/bharani4112</a></div>
+          </div>
+        </div>
+        <!-- RIGHT -->
+        <div class="about-content">
+          <div>
+            <div class="sec-tag"><i class="fas fa-user" style="font-size:.65rem"></i> About Me</div>
+            <h1>Building the web,<br>one line at a <em>time.</em></h1>
+            <p>I'm a passionate Full Stack Developer with hands-on experience building real, production-ready websites. I specialise in PHP backends, responsive frontends, and turning client ideas into working products — fast.</p>
+            <p>Currently working as a Junior PHP Developer at Veerai Kumaran PVT, where I've already shipped two live client websites. I thrive in fast-paced environments and love solving real problems with code.</p>
+            <div class="highlight">
+              <strong>What makes me different:</strong> I'm a fresher who has already delivered <strong>production projects for real clients</strong>. I don't just know the theory — I've done the work and shipped the product.
+            </div>
+          </div>
+          <div class="mini-stats">
+            <div class="ms"><span class="ms-n">2+</span><span class="ms-l">Live Sites</span></div>
+            <div class="ms"><span class="ms-n">5+</span><span class="ms-l">Projects</span></div>
+            <div class="ms"><span class="ms-n">8+</span><span class="ms-l">Technologies</span></div>
+          </div>
+          <div class="about-btns">
+            <a href="project.html" class="btn-primary"><i class="fas fa-rocket"></i> See My Work</a>
+            <a href="resume.pdf" download class="btn-ghost"><i class="fas fa-download"></i> Download CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>© 2025 Bharanidharan. All rights reserved. | Made with ❤️</footer>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
